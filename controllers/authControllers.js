@@ -40,8 +40,8 @@ const handleErrors=(err)=>{
 // create jwt token
 const maxAge=2*24*60*60;
 const createToken = (id) =>{
-    return jwt.sign({id},'rip is a good boy',{
-        expiresIn: maxAge
+    return jwt.sign({ id }, process.env.SECRET_KEY, {
+      expiresIn: maxAge,
     });
 }
 
