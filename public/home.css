@@ -1,0 +1,35 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+
+}
+body::before {
+  display: block;
+  content: '';
+  height: 60px;
+}
+
+.header{
+  font-family: poppins;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 800;  
+}
+
+.log_in{
+  color: beige;
+  text-decoration: none;
+}
+
+.log_in:hover
+{
+  color: darksalmon;
+}
+
+.welcome{
+    color: azure;
+    padding-right: 2em;
+}
+
+.footer_p{
+    margin-bottom: 0.1em;
+}

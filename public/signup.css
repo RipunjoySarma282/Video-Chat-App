@@ -1,0 +1,46 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+form{
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+body::before {
+  display: block;
+  content: '';
+  height: 60px;
+}
+
+
+.footer_p{
+    margin-bottom: 0em;
+}
+
+.log_in{
+  color: beige;
+  text-decoration: none;
+}
+
+.log_in:hover
+{
+  color: darksalmon;
+}
+
+.header{
+  font-family: poppins;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 800;
+  
+}
+
+.error{
+  color: #ff0099;
+  margin: 10px 2px;
+  font-size: 0.6em;
+  font-weight: bold;
+}

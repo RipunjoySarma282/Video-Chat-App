@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chat App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="signUp.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+      <div class="container">
+        <p class="navbar-brand"><span class="header">Video Chat App </span></p>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="/login" class="log_in">Log In</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="p-5 p-lg-0 pt-lg-5 text-sm-start">
+        <div class="container">
+            <div class="row align-items-center justify-content-between pb-5">    
+                <div class="col-md p-5">
+                    <img src="./images/signup/4911324.jpg" class="img-fluid" alt="">
+                  </div>
+                <div class="col-md p-5">
+                    <form>
+                        <div class="mb-3">
+                        <label for="email" class="form-label fs-5">Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                        <div class="email error"></div>
+                        <label for="username" class="form-label fs-5">Username</label>
+                        <input type="text" class="form-control" name="username" required>
+                        <label for="password" class="form-label fs-5">Password</label>
+                        <input type="password" class="form-control" name="password" required>
+                        <div class="password error"></div>
+                        <button class="btn btn-dark btn-lg">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+      <div class="container">
+        <p class="lead footer_p">Copyright &copy; 2021 Video Chat App. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
+
+<script>
+      const form=document.querySelector('form');
+      const emailError=document.querySelector('.email.error');
+      const passwordError=document.querySelector('.password.error');
+
+      form.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+
+        // reset error
+        emailError.textContent='';
+        passwordError.textContent='';
+
+        // get values from the form
+        const email=form.email.value;
+        const username=form.username.value;
+        const password=form.password.value;
+
+        try{
+          const res=await fetch('/signup',{
+            method:'POST',
+            body:JSON.stringify({email:email,username:username,password:password}),
+            headers:{'Content-Type':'application/json'}
+          });
+
+          const data=await res.json();
+          console.log(data);
+          if(data.errors)
+            {
+              emailError.textContent=data.errors.email;
+              passwordError.textContent=data.errors.password;
+            }
+          if(data.user)
+            {
+              location.assign('/');
+            }
+        }catch(e){
+          console.log(e);
+        }
+      });
+</script>
