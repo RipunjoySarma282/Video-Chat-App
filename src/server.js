@@ -1,35 +1,40 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
+
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 const authRoutes = require("../routes/authRoutes");
 const cookieParser = require("cookie-parser");
 const { requireAuth, checkUser } = require("../middleware/authMiddleware");
 
-const server = require("http").Server(app);
 const { v4: uuidV4 } = require("uuid");
+const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const { ExpressPeerServer } = require("peer");
 const PeerServer = ExpressPeerServer(server, {
   debug: true,
 });
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
 const generatemsg = require("./utils/message");
+
 
 // view engine
 app.set("view engine", "ejs");
 
+
 // peerjs connection
 app.use("/peerjs", PeerServer);
+
 
 // middleware
 app.use(express.json());
 app.use(express.static("public"));
 app.use(cookieParser());
 
+
 // routes
 app.get("*", checkUser);
+
 app.get("/", requireAuth, (req, res) => {
   res.render("home");
 });
@@ -65,6 +70,7 @@ app.get("/:idroom", requireAuth, (req, res) => {
   }
 });
 
+// Socket-io connection
 io.on("connection", (socket) => {
   socket.on("join-room", (username, roomId, userId) => {
     socket.join(roomId);
@@ -86,18 +92,15 @@ io.on("connection", (socket) => {
   });
 });
 
-// database connection
-const dbURI =
-  "mongodb+srv://Rip:ripunjoysarma@video-app.aa78e.mongodb.net/video-app";
-mongoose
-  .connect(dbURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
-  .then((result) =>
-    server.listen(7000, () => {
-      console.log("server is listening on port 7000");
-    })
-  )
-  .catch((err) => console.log(err));
+// Database Connection
+const connectDB = require("../Database connection/connectDB");
+connectDB();
+
+// module.exports = app;
+
+
+const port=process.env.PORT || 7000
+
+server.listen(port, ()=>{
+  console.log(`server is listening on port ${port}`);
+})
