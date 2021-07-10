@@ -33,3 +33,51 @@ body::before {
 .footer_p{
     margin-bottom: 0.1em;
 }
+
+
+#title{
+  animation: heading;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes heading{
+  0%{
+    height: 400px;
+  }
+  100%{
+    height: 50px;
+  }
+}
+
+#clickToJoin{
+  opacity: 0;
+  animation: clickbutton;
+  animation-duration: 2s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards
+}
+
+@keyframes clickbutton{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+#srcimg{
+  animation: imagemain;
+  animation-duration: 3s;
+  animation-fill-mode: forwards
+}
+
+@keyframes imagemain{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
