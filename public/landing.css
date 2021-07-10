@@ -36,3 +36,8 @@ h2{
   color: darksalmon;
 }
 
+.footer_p{
+  padding-bottom: 0.35px;
+  margin-top: 0.5px;
+  margin-bottom: 0.5px;
+}
