@@ -4,7 +4,7 @@ const socket=io("/");
 var Newpeer=new Peer(undefined,{
     path: '/peerjs',
     host:'/',
-    port:'7000'
+    port:PeerPort
 })
 
 Newpeer.on('open',id=>{

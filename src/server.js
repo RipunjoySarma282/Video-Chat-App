@@ -31,6 +31,14 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(cookieParser());
 
+var PeerPort;
+
+if (process.env.NODE_ENV !== "production") {
+  PeerPort = 7000;
+} else {
+  PeerPort = 443;
+}
+
 
 // routes
 app.get("*", checkUser);
@@ -62,6 +70,7 @@ app.get("/:idroom", requireAuth, (req, res) => {
         res.render("room", {
           username: user.username,
           roomId: req.params.idroom,
+          PeerPort
         });
       }
     });
@@ -69,6 +78,7 @@ app.get("/:idroom", requireAuth, (req, res) => {
     res.redirect("/login");
   }
 });
+
 
 // Socket-io connection
 io.on("connection", (socket) => {
@@ -100,6 +110,8 @@ connectDB();
 
 
 const port=process.env.PORT || 7000
+
+// console.log(process.env);
 
 server.listen(port, ()=>{
   console.log(`server is listening on port ${port}`);
