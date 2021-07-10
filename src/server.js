@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require("express");
 const app = express();
 
@@ -35,8 +34,10 @@ var PeerPort;
 
 if (process.env.NODE_ENV !== "production") {
   PeerPort = 7000;
+  require("dotenv").config();
 } else {
   PeerPort = 443;
+  console.log("Running in production");
 }
 
 
