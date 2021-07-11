@@ -107,12 +107,9 @@ io.on("connection", (socket) => {
 const connectDB = require("../Database connection/connectDB");
 connectDB();
 
-// module.exports = app;
-
 
 const port=process.env.PORT || 7000
 
-// console.log(process.env);
 
 server.listen(port, ()=>{
   console.log(`server is listening on port ${port}`);

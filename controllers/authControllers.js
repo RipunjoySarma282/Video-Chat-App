@@ -38,10 +38,10 @@ const handleErrors=(err)=>{
 
 
 // create jwt token
-const maxAge=2*24*60*60;
+const maxAge = process.env.JWT_EXPIRES_IN;
 const createToken = (id) =>{
-    return jwt.sign({ id }, process.env.SECRET_KEY, {
-      expiresIn: maxAge,
+    return jwt.sign({id},process.env.SECRET_KEY,{
+        expiresIn: maxAge
     });
 }
 
@@ -55,7 +55,7 @@ module.exports.signup_post = async(req,res) =>{
     try{
         const user= await User.create({email,username,password});
         const token=createToken(user._id);
-        res.cookie('jwt',token, {httpOnly:true, maxAge:maxAge*100});
+        res.cookie('jwt',token, {httpOnly:true, maxAge:maxAge*1000});
         return res.status(201).json({user:user._id});
     }catch(e){
         const errors=handleErrors(e);
