@@ -18,9 +18,6 @@ body::before {
   content: '';
   height: 60px;
 }
-.footer_p{
-    margin-bottom: 0.15em;
-}
 
 .log_in{
   color: beige;
@@ -67,11 +64,11 @@ body::before {
 }
 
 footer{
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
 }
+
 
 @media (max-width: 360px) {
   .form-control {

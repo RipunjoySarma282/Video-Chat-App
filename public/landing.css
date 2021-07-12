@@ -26,18 +26,23 @@ h2{
     padding-right: 2em;
 }
 
+
 .log_in{
   color: beige;
   text-decoration: none;
 }
+
 
 .log_in:hover
 {
   color: darksalmon;
 }
 
-.footer_p{
-  padding-bottom: 0.35px;
-  margin-top: 0.5px;
-  margin-bottom: 0.5px;
+
+footer{
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
+
+
