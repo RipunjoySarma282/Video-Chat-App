@@ -35,6 +35,7 @@ var PeerPort;
 if (process.env.NODE_ENV !== "production") {
   PeerPort = 7000;
   require("dotenv").config();
+  console.log("running in dev");
 } else {
   PeerPort = 443;
   console.log("Running in production");
