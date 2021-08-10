@@ -162,11 +162,9 @@ const scrollToBottom = () => {
 };
 
 function addIdToMyVideo(video, h1, name) {
-  // console.log("Adding id",name,video)
   var id = document.createAttribute("id");
   id.value = name;
   video.setAttributeNode(id);
-  // var h1=document.createElement('h1');
   h1.innerHTML = name;
   video.parentNode.insertBefore(h1, video.nextSibling);
 }
